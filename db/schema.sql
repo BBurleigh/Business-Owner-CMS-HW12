@@ -10,13 +10,13 @@ CREATE TABLE department (
 );
 
 CREATE TABLE position (
-    id INT NOT NLL AUTO_INCREMENT PRIMARY KEY,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30) NOT NULL,
     salary DECIMAL(8,2) NOT NULL,
     department_id INT NOT NULL FOREIGN KEY
     REFERENCES department(id)
     ON DELETE NULL SET
-)
+);
 
 CREATE TABLE employee (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -26,4 +26,4 @@ CREATE TABLE employee (
     manager_id INT FOREIGN KEY
     REFERENCES employee(id)
     ON DELETE NULL SET
-)
+);
