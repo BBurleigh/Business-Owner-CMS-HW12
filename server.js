@@ -19,3 +19,7 @@ const db = mysql.createConnection(
     },
     console.log(`You are connected to the company_db.`)
 )
+
+app.listen(PORT, () => {
+   console.log(`Server is running on port ${PORT}`); 
+})
