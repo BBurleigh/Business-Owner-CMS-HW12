@@ -1,0 +1,20 @@
+{
+  "name": "business-owner-cms-hw12",
+  "version": "1.0.0",
+  "description": "A basic program where a company owner can check on their department and employee databases and make any necessary changes/adjustments.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BBurleigh/Business-Owner-CMS-HW12.git"
+  },
+  "author": "BBurleigh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BBurleigh/Business-Owner-CMS-HW12/issues"
+  },
+  "homepage": "https://github.com/BBurleigh/Business-Owner-CMS-HW12#readme"
+}
