@@ -21,6 +21,13 @@ const db = mysql.createConnection(
     console.log(`You are connected to the company_db.`)
 )
 
+const listQuestions = {
+    name: "options",
+        type: "list",
+        message: "You have accessed your guild's database. What would you like to do? Scroll up/down for more options.",
+        choices: ["View all factions of your guild (departments).", "Add a new faction.", "View all guild members (employees).", "View all guild members by their factions.", "Add a new guild member to the roster.", "Terminate a member's guild status.", "View all positions within the guild.", "Add a position within the guild.", "There is nothing else to be done (quit)."]
+}
+
 app.use((req, res) => {
     res.status(404).end();
 })
@@ -30,10 +37,35 @@ app.listen(PORT, () => {
 })
 
 function terminalPrompts() {
-    inquirer.prompt({
-        name: "options",
-        type: "list",
-        message: "You have accessed your guild's database. What would you like to do? Scroll up/down for more options.",
-        choices: ["View all factions of your guild (departments).", "View all guild members (employees).", "View all guild members by their factions."]
+    inquirer.prompt(listQuestions)
+    .then (function(response) {
+        switch (response.options) {
+            case "View all factions of your guild (departments).":
+                factionDirectory();
+                break;
+            case "Add a new faction.":
+                addFaction();
+                break;
+            case "View all guild members (employees).":
+                guildMemberDirectory();
+                break;
+            case "View all guild members by their factions.":
+                membersAndFactions();
+                break;
+            case "Add a new guild member to the roster.":
+                addNewMember();
+                break;
+            case "Terminate a member's guild status.":
+                terminateMember();
+                break;
+            case "View all positions within the guild.":
+                guildPositionsDirectory();
+                break;
+            case "Add a position within the guild.":
+                addNewPosition();
+                break;
+            case "There is nothing else to be done (quit).":
+                endPrompts();
+        }
     })
 }
