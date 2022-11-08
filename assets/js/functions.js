@@ -37,7 +37,14 @@ function terminateMember() {
 }
 
 function guildPositionsDirectory() {
-
+    const sql = `SELECT * FROM POSITIONS`;
+    db.query(sql, (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        console.table(rows);
+        return terminalPrompts();
+    })
 }
 
 function addNewPosition() {

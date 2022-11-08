@@ -1,4 +1,5 @@
 const express = require('express');
+
 const { default: inquirer } = require('inquirer');
 
 const mysql = require('mysql2');
@@ -32,9 +33,17 @@ app.use((req, res) => {
     res.status(404).end();
 })
 
-app.listen(PORT, () => {
+db.connect(err => {
+    if (err) throw err;
+    console.log('Database is connected.');
+
+   app.listen(PORT, () => {
    console.log(`Server is running on port ${PORT}`); 
+
+   terminalPrompts();
+   })
 })
+
 
 function terminalPrompts() {
     inquirer.prompt(listQuestions)
