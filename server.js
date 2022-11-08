@@ -65,7 +65,7 @@ function terminalPrompts() {
                 addNewPosition();
                 break;
             case "There is nothing else to be done (quit).":
-                endPrompts();
+                process.exit(0);
         }
     })
 }

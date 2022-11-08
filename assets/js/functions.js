@@ -8,3 +8,31 @@ function factionDirectory() {
         return terminalPrompts();
     })
 }
+
+function addFaction() {
+
+}
+
+function guildMemberDirectory() {
+
+}
+
+function membersAndFactions() {
+
+}
+
+function addNewMember() {
+
+}
+
+function terminateMember() {
+
+}
+
+function guildPositionsDirectory() {
+
+}
+
+function addNewPosition() {
+    
+}
