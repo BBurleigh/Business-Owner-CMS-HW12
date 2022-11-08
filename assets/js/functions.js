@@ -14,7 +14,14 @@ function addFaction() {
 }
 
 function guildMemberDirectory() {
-
+    const sql = `SELECT * FROM MEMBERS`;
+    db.query(sql, (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        console.table(rows);
+        return terminalPrompts();
+    })
 }
 
 function membersAndFactions() {
@@ -34,5 +41,5 @@ function guildPositionsDirectory() {
 }
 
 function addNewPosition() {
-    
+
 }

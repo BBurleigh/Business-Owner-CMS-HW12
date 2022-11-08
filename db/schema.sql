@@ -9,7 +9,7 @@ CREATE TABLE factions (
     faction_name VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE position (
+CREATE TABLE positions (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30) NOT NULL,
     salary DECIMAL(8,2) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE position (
     ON DELETE NULL SET
 );
 
-CREATE TABLE member (
+CREATE TABLE members (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
