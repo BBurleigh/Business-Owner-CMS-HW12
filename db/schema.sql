@@ -13,9 +13,10 @@ CREATE TABLE positions (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30) NOT NULL,
     salary DECIMAL(8,2) NOT NULL,
-    faction_id INT NOT NULL FOREIGN KEY
-    REFERENCES faction(id)
-    ON DELETE NULL SET
+    faction_id INT,
+    FOREIGN KEY (faction_id)
+    REFERENCES factions(id)
+    ON DELETE SET NULL
 );
 
 CREATE TABLE members (
@@ -23,7 +24,8 @@ CREATE TABLE members (
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     role_id INT NOT NULL,
-    captain_id INT FOREIGN KEY
-    REFERENCES member(id)
-    ON DELETE NULL SET
+    captain_id INT,
+    FOREIGN KEY (captain_id)
+    REFERENCES members(id)
+    ON DELETE SET NULL
 );
