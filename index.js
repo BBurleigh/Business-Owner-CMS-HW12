@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const db = require("./db/functions");
 
 
 const listQuestions = {
@@ -14,7 +15,8 @@ const listQuestions = {
 function terminalPrompts() {
     inquirer.prompt(listQuestions)
     .then (function(response) {
-        switch (response.options) {
+        let choice = response.options;
+        switch (choice) {
             case "View all factions of your guild (departments).":
                 factionDirectory();
                 break;
@@ -46,3 +48,12 @@ function terminalPrompts() {
 }
 
 terminalPrompts();
+
+// function factionDirect(){
+//     db.factionDirectory()
+//     .then(([data]) => {
+//         let fac = data;
+//         console.table(fac);
+//     })
+//     .then(()=> terminalPrompts())
+// }
