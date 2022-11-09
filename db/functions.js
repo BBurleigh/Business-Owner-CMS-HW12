@@ -1,3 +1,4 @@
+const { terminalPrompts } = require('..');
 const db = require('./connection');
 
 // const { terminalPrompts } = require('../index');
@@ -12,7 +13,6 @@ async function factionDirectory() {
         }
         console.log("/n")
         console.table(rows);
-        // terminalPrompts();
     }) 
     
 }
