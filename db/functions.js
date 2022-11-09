@@ -1,3 +1,5 @@
+const db = require('./connection');
+
 function factionDirectory() {
     const sql = `SELECT * FROM FACTIONS`;
     db.query(sql, (err, rows) => {
@@ -68,3 +70,7 @@ function addNewPosition() {
 // }
 
 // module.exports = new DB(connection);
+
+module.exports = {
+    factionDirectory,
+}
