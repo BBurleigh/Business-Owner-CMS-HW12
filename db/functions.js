@@ -1,14 +1,20 @@
 const db = require('./connection');
 
+// const { terminalPrompts } = require('../index');
+
+// console.log(terminalPrompts);
+
 async function factionDirectory() {
     const sql = `SELECT * FROM FACTIONS`;
     db.query(sql, (err, rows) => {
         if (err) {
             throw err;
         }
+        console.log("/n")
         console.table(rows);
-        // return terminalPrompts();
-    })
+        // terminalPrompts();
+    }) 
+    
 }
 
 function addFaction() {

@@ -12,11 +12,12 @@ const listQuestions = {
 
 function terminalPrompts() {
     inquirer.prompt(listQuestions)
-    .then (function(response) {
+    .then (async function(response) {
         let choice = response.options;
         switch (choice) {
             case "View all factions of your guild (departments).":
-                factionDirectory().then(() => terminalPrompts());
+                await factionDirectory();
+                terminalPrompts();
                 break;
             case "Add a new faction.":
                 addFaction();
@@ -41,11 +42,15 @@ function terminalPrompts() {
                 break;
             case "There is nothing else to be done (quit).":
                 process.exit(0);
-        }
+        } 
+        
     })
 }
 
 terminalPrompts();
+
+module.exports = { terminalPrompts };
+
 
 // function factionDirect(){
 //     db.factionDirectory()
