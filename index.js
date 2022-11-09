@@ -16,7 +16,7 @@ function terminalPrompts() {
         let choice = response.options;
         switch (choice) {
             case "View all factions of your guild (departments).":
-                factionDirectory();
+                factionDirectory().then(() => terminalPrompts());
                 break;
             case "Add a new faction.":
                 addFaction();
