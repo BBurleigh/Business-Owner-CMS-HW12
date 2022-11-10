@@ -63,8 +63,10 @@ function guildMemberDirectory() {
         if (err) {
             throw err;
         }
+        console.log("\n");
         console.table(rows);
-        return terminalPrompts();
+        console.log("\n");
+        terminalPrompts(listQuestions);
     })
 }
 
@@ -86,32 +88,16 @@ function guildPositionsDirectory() {
         if (err) {
             throw err;
         }
+        console.log("\n");
         console.table(rows);
-        return terminalPrompts();
+        console.log("\n");
+        terminalPrompts(listQuestions);
     })
 }
 
 function addNewPosition() {
 
 }
-
-
-
-
-// const connection = require("./connection");
-
-// class DB {
-//     constructor(connection){
-//         this.connection = connection;
-//     }
-
-//     factionDirectory() {
-//         return this.connection.promise().query("SELECT * FROM FACTIONS")
-//     }
-
-// }
-
-// module.exports = new DB(connection);
 
 module.exports = {
     terminalPrompts,
