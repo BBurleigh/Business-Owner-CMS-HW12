@@ -54,7 +54,37 @@ function factionDirectory() {
 }
 
 function addFaction() {
-
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "factionName",
+            message: "What is the name of this new faction in your guild?",
+            validate: nameInput => {
+                if (nameInput != '') {
+                    console.log("One moment while this faction is being added to the directory of other factions.")
+                    return true;
+                } else {
+                    console.log("Please enter the name of the new faction.")
+                    return false;
+                }
+            }
+        }
+    ])
+    
+    .then(response => {
+        const sql = `INSERT INTO FACTIONS (factionName)
+        VALUES (?)`;
+        const params = response.factionName;
+        db.query(sql, params, (err) => {
+            if (err) {
+                throw err;
+            }
+            console.log("\n");
+        console.table(rows);
+        console.log("\n");
+        terminalPrompts(listQuestions);
+        })
+    })
 }
 
 function guildMemberDirectory() {
@@ -64,7 +94,7 @@ function guildMemberDirectory() {
             throw err;
         }
         console.log("\n");
-        console.table(rows);
+        factionDirectory();
         console.log("\n");
         terminalPrompts(listQuestions);
     })
