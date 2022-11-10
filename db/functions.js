@@ -101,7 +101,19 @@ function guildMemberDirectory() {
 }
 
 function membersAndFactions() {
-
+    const sql = `SELECT factions.faction_name, members.first_name, members.last_name
+    FROM members
+    LEFT JOIN factions
+    ON factions.id = members.id`;
+    db.query(sql, (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        console.log("\n");
+        console.table(rows);
+        console.log("\n");
+        terminalPrompts(listQuestions);
+    })
 }
 
 function addNewMember() {
