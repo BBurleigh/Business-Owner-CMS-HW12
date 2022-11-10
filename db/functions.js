@@ -1,20 +1,56 @@
-const { terminalPrompts } = require('..');
+const inquirer = require('inquirer');
+
 const db = require('./connection');
 
-// const { terminalPrompts } = require('../index');
+const listQuestions = require('./listQuestions.json');
 
-// console.log(terminalPrompts);
+function terminalPrompts() {
+    inquirer.prompt(listQuestions)
+    .then (function(response) {
+        let choice = response.options;
+        switch (choice) {
+            case "View all factions of your guild (departments).":
+                factionDirectory();
+                break;
+            case "Add a new faction.":
+                addFaction();
+                break;
+            case "View all guild members (employees).":
+                guildMemberDirectory();
+                break;
+            case "View all guild members by their factions.":
+                membersAndFactions();
+                break;
+            case "Add a new guild member to the roster.":
+                addNewMember();
+                break;
+            case "Terminate a member's guild status.":
+                terminateMember();
+                break;
+            case "View all positions within the guild.":
+                guildPositionsDirectory();
+                break;
+            case "Add a position within the guild.":
+                addNewPosition();
+                break;
+            case "There is nothing else to be done (quit).":
+                process.exit(0);
+        } 
+        
+    })
+}
 
-async function factionDirectory() {
+function factionDirectory() {
     const sql = `SELECT * FROM FACTIONS`;
     db.query(sql, (err, rows) => {
         if (err) {
             throw err;
         }
-        console.log("/n")
+        console.log("\n");
         console.table(rows);
+        console.log("\n");
+        terminalPrompts(listQuestions);
     }) 
-    
 }
 
 function addFaction() {
@@ -78,5 +114,5 @@ function addNewPosition() {
 // module.exports = new DB(connection);
 
 module.exports = {
-    factionDirectory,
+    terminalPrompts,
 }

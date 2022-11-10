@@ -1,0 +1,7 @@
+{
+    "name": "options",
+    "type": "list",
+    "message": "You have accessed your guild's database. What would you like to do? Scroll up/down for more options.",
+    "choices": ["View all factions of your guild (departments).", "Add a new faction.", "View all guild members (employees).", "View all guild members by their factions.", "Add a new guild member to the roster.", "Terminate a member's guild status.", "View all positions within the guild.", "Add a position within the guild.", "There is nothing else to be done (quit)."],
+    "loop": false
+}
