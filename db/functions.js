@@ -117,7 +117,46 @@ function membersAndFactions() {
 }
 
 function addNewMember() {
+  inquirer.prompt([
+    {
+    type: "input",
+    name: "firstName",
+    message: "What is the first and preferred name of your new guild member?",
+    validate: nameInput => {
+        if (nameInput != '') {
+            console.log(": An excellent first name for our new member.")
+            return true;
+        } else {
+            console.log("Please enter the first and preferred name of the new guildmate.")
+            return false;
+        }
+    }
+    },
+    {
+        type: "input",
+        name: "lastName",
+        message: "What is the last name of your new guild member?",
+        validate: nameInput => {
+            if (nameInput != '') {
+                console.log(": An excellent last name for our new member.")
+                return true;
+            } else {
+                console.log("Please enter the last name of the new guildmate.")
+                return false;
+            }
+        }
+        }
+  ])
 
+  .then (response => {
+    const params = [response.firstName, response.lastName];
+    const sql = `SELECT * FROM roles`;
+    db.query(sql, (err, rows) => {
+        if (err) {
+            throw err;
+        }
+    })
+  })
 }
 
 function terminateMember() {
