@@ -61,7 +61,7 @@ function addFaction() {
             message: "What is the name of this new faction in your guild?",
             validate: nameInput => {
                 if (nameInput != '') {
-                    console.log("One moment while this faction is being added to the directory of other factions.")
+                    console.log(": One moment while this faction is being added to the directory of other factions.")
                     return true;
                 } else {
                     console.log("Please enter the name of the new faction.")
@@ -72,10 +72,10 @@ function addFaction() {
     ])
     
     .then(response => {
-        const sql = `INSERT INTO FACTIONS (factionName)
+        const sql = `INSERT INTO FACTIONS (faction_name)
         VALUES (?)`;
         const params = response.factionName;
-        db.query(sql, params, (err) => {
+        db.query(sql, params, (err, rows) => {
             if (err) {
                 throw err;
             }
