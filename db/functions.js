@@ -95,7 +95,7 @@ function guildMemberDirectory() {
             throw err;
         }
         console.log("\n");
-        factionDirectory();
+        console.table(rows);
         console.log("\n");
         terminalPrompts(listQuestions);
     })
@@ -151,7 +151,7 @@ function addNewMember() {
 
   .then (response => {
     const params = [response.firstName, response.lastName];
-    const sql = `SELECT * FROM roles`;
+    const sql = `SELECT * FROM POSITIONS`;
     db.query(sql, (err, rows) => {
         if (err) {
             throw err;
