@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const { removeListener } = require('./connection');
 
 const db = require('./connection');
 
@@ -155,6 +156,30 @@ function addNewMember() {
         if (err) {
             throw err;
         }
+        const positions = rows.map(({title, id}) => ({name: title, value: id}));
+        inquirer.prompt([
+            {
+                type: "list",
+                name: "position",
+                message: "What position/job will this new member have in the guild?",
+                choices: positions
+            }
+        ])
+    .then(chosenPosition => {
+        const position = chosenPosition.position;
+        params.push(position);
+        const sql = `SELECT * FROM MEMBERS`;
+        db.query(sql, (err, rows) => {
+            if (err) {
+                throw err;
+            }
+            const captain = rows.map(({first_name, last_name, id}) => ({name: `${first_name} ${last_name}`, value: id}));
+            captain.push({name:"Not captain", value: null});
+            inquirer.prompt([
+                
+            ])
+        })
+    })
     })
   })
 }
