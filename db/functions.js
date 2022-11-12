@@ -165,6 +165,7 @@ function addNewMember() {
                 choices: positions
             }
         ])
+
     .then(chosenPosition => {
         const position = chosenPosition.position;
         params.push(position);
@@ -176,8 +177,27 @@ function addNewMember() {
             const captain = rows.map(({first_name, last_name, id}) => ({name: `${first_name} ${last_name}`, value: id}));
             captain.push({name:"Not captain", value: null});
             inquirer.prompt([
-                
+                {
+                type: "list",
+                name: "captain",
+                message: "Who is this new member's commanding officer?",
+                choices: captain
+                }
             ])
+
+            .then(captainAnswer => {
+                const leader = captainAnswer.captain;
+                params.push(leader);
+                const sql = `INSERT INTO MEMBERS (first_name, last_name, role_id, captain_id)
+                VALUES (?, ?, ?, ?)`;
+                db.query(sql, params, (err) => {
+                    if (err) {
+                        throw err;
+                    }
+                    console.log("The new member has been successfully added to the member directory!");
+                    guildMemberDirectory();
+                })
+            })
         })
     })
     })
