@@ -221,7 +221,7 @@ function guildPositionsDirectory() {
     })
 }
 
-function addNewPosition() => {
+function addNewPosition() {
     inquirer.prompt([
         {
             type: "input",
@@ -253,7 +253,35 @@ function addNewPosition() => {
     ])
 
     .then (response => {
-        
+        const params = [response.position, response.salary];
+        const sql = `SELECT * FROM FACTIONS`;
+        db.query(sql, (err, rows) => {
+            if (err) {
+                throw err;
+            }
+            const factions = rows.map(({name, id}) => ({name: name, value: id}));
+            inquirer.prompt([
+                {
+                type: "list",
+                name: "faction",
+                message: "In which faction of the guild would this position exist?",
+                choices: factions
+                }
+            ])
+            .then (factionMembership => {
+            const faction = factionMembership.faction;
+            params.push(faction);
+            const sql = `INSERT INTO POSITIONS (title, salary, faction_id)
+            VALUES (?, ?, ?)`;
+            db.query(sql, params, (err) => {
+                if (err) {
+                    throw err;
+                }
+                console.log("The new position has been added to the positions directory!");
+                guildPositionsDirectory();
+            })
+            }) 
+        })
     })
 }
 
