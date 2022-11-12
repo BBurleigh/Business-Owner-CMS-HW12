@@ -19,7 +19,7 @@ The following commands will need to be run in the user's terminal (do not includ
 ## Demo Video
 ---
 A demonstration video of the app's functionality is provided below.
-----------VIDEO HERE-------------
+https://bootcampspot.instructuremedia.com/embed/1ac9825e-2a85-4f6e-b980-d7b519444466
 
 ## Usage 
 ---
