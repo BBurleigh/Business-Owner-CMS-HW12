@@ -205,7 +205,34 @@ function addNewMember() {
 }
 
 function terminateMember() {
+    const sql = `SELECT first_name, last_name, id FROM MEMBERS`;
+    db.query(sql, (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        const members = rows.map(({first_name, last_name, id}) => ({name: `${first_name} ${last_name}`, value: id}));
+        inquirer.prompt([
+            {
+                type: "list",
+                name: "member",
+                message: "Which member is designated for termination from the guild?",
+                choices: members
+            }
+        ])
 
+        .then (terminationChoice => {
+            const member = terminationChoice.member;
+            const params = member;
+            const sql = `DELETE FROM MEMBERS WHERE id = ?`;
+            db.query(sql, params, (err) => {
+                if (err) {
+                    throw err;
+                }
+                console.log("The member has been terminated from the guild.");
+                guildMemberDirectory();
+            })
+        })
+    })
 }
 
 function guildPositionsDirectory() {
