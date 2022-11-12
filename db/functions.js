@@ -175,7 +175,7 @@ function addNewMember() {
                 throw err;
             }
             const captain = rows.map(({first_name, last_name, id}) => ({name: `${first_name} ${last_name}`, value: id}));
-            captain.push({name:"Not captain", value: null});
+            captain.push({name:"No captain", value: null});
             inquirer.prompt([
                 {
                 type: "list",
@@ -221,8 +221,40 @@ function guildPositionsDirectory() {
     })
 }
 
-function addNewPosition() {
+function addNewPosition() => {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "position",
+            message: "What is the name of this new position within the guild?",
+            validate: nameInput => {
+                if (nameInput != '') {
+                    console.log("This new position will do wonders for our guild!");
+                    return true;
+                } else {
+                    console.log("Please enter the name of the new position/job within the guild.");
+                    return false;
+                }
+            }
+        },
+        {
+            type: "input",
+            name: "salary",
+            message: "For this new position, what will its base salary be?",
+            validate: salaryInput => {
+                if (isNaN(salaryInput)) {
+                    console.log("Please enter an appropriate salary for this new position.");
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+    ])
 
+    .then (response => {
+        
+    })
 }
 
 module.exports = {
